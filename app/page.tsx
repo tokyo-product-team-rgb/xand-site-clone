@@ -1,18 +1,17 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ScrollTimeline } from "@/components/scroll-reveal";
 
 export default function Home() {
   return (
     <main>
       {/* Hero */}
-      <section className="min-h-[70vh] flex flex-col items-center justify-center border-t border-b border-border relative">
+      <section className="min-h-screen flex flex-col items-center justify-center border-t border-b border-border relative">
         <Image
           src="/hero-logo.png"
           alt="X&"
           width={315}
           height={120}
-          className="w-50 md:w-[315px] mix-blend-multiply"
+          className="w-50 md:w-[315px]"
           priority
         />
         <p className="mt-6 text-sm md:text-base tracking-wider text-muted-foreground font-light">
@@ -20,16 +19,30 @@ export default function Home() {
         </p>
       </section>
 
-      {/* Facts Banner */}
-      <ScrollTimeline
-        highlight="X& is coming together."
-        items={[
-          { text: "Capital is changing." },
-          { text: "Code is accelerating." },
-          { text: "Culture is becoming distribution." },
-          { text: "X& is coming together.", bold: true },
-        ]}
-      />
+      {/* Facts */}
+      <section className="relative py-32 md:py-48">
+        <div className="max-w-3xl mx-auto px-8">
+          {/* Decorative vertical line */}
+          <div className="absolute left-1/2 top-16 w-px h-32 bg-border" />
+          {/* Decorative circle */}
+          <div className="absolute left-8 top-1/2 -translate-y-1/2 w-48 h-48 rounded-full border border-border hidden md:block" />
+
+          <div className="space-y-12 text-center">
+            <p className="text-xl md:text-2xl text-foreground/80 font-light">
+              Capital is changing.
+            </p>
+            <p className="text-xl md:text-2xl text-foreground font-semibold">
+              Code is accelerating.
+            </p>
+            <p className="text-xl md:text-2xl text-foreground/80 font-light">
+              Culture is becoming distribution.
+            </p>
+            <p className="text-2xl md:text-3xl text-foreground font-bold mt-16">
+              X& is where they come together.
+            </p>
+          </div>
+        </div>
+      </section>
 
       {/* How It Works */}
       <section className="py-24 md:py-32 px-8">
