@@ -12,7 +12,7 @@ export default function Home() {
           alt="X&"
           width={315}
           height={120}
-          className="w-50 md:w-[315px]"
+          className="w-50 md:w-[315px] mix-blend-multiply"
           priority
         />
         <p className="mt-6 text-sm md:text-base tracking-wider text-muted-foreground font-light">
