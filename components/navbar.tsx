@@ -27,7 +27,7 @@ export function Navbar() {
           href={link.href}
           className={`pb-1 transition-colors hover:text-foreground/80 ${
             pathname === link.href
-              ? "border-b border-[#979594] text-foreground"
+              ? "border-b border-[#fcaa2d] text-foreground"
               : "text-foreground/60"
           }`}
         >
@@ -62,7 +62,7 @@ export function Navbar() {
         href="/sanbo"
         className={`pb-1 transition-colors hover:text-foreground/80 ${
           pathname === "/sanbo"
-            ? "border-b border-[#979594] text-foreground"
+            ? "border-b border-[#fcaa2d] text-foreground"
             : "text-foreground/60"
         }`}
       >
