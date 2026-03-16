@@ -5,41 +5,38 @@ import Image from "next/image";
 
 const steps = [
   {
-    num: "01",
-    title: "Global Celebrities",
+    num: 1,
+    title: "GLOBAL CELEBRITIES",
+    subtitle: "Celebrity-Led Investment Platform",
     desc: "World-class celebrities partner with X& to deploy capital, build brands, and create value through direct engagement with the startup ecosystem.",
     images: ["/kevin.png", "/steve.png", "/man.png"],
   },
   {
-    num: "02",
-    title: "Online Influence",
+    num: 2,
+    title: "ONLINE INFLUENCE",
+    subtitle: "Digital-native distribution",
     desc: "Amplifying deal flow and brand reach through digital-native networks that connect culture to capital at scale.",
-    images: [],
+    visual: "interconnected",
   },
   {
-    num: "03",
-    title: "Offline Influence",
-    desc: "High-touch relationships and curated events that turn cultural capital into lasting venture partnerships.",
-    images: [],
+    num: 3,
+    title: "OFFLINE INFLUENCE",
+    subtitle: "Real-world credibility and access",
+    desc: "From Decacorn Cup to Founder Performance Centers, we bring unique people together.",
+    visual: "decacorn",
   },
   {
-    num: "04",
-    title: "AI-Native Intelligence OS",
+    num: 4,
+    title: "AI NATIVE INTELLIGENCE OS",
+    subtitle: "Sanbo — Intelligence at every layer",
     desc: "Proprietary AI infrastructure powering every layer — from deal sourcing and diligence to portfolio management and LP reporting.",
-    images: [],
+    visual: "sanbo",
   },
 ];
 
-const stepVisuals: Record<string, { image?: string; svg?: string; label: string; sublabel: string }> = {
-  "01": { label: "Celebrity Network", sublabel: "Global reach, cultural capital" },
-  "02": { svg: "interconnected", label: "Digital Distribution", sublabel: "Social reach × deal flow" },
-  "03": { svg: "decacorn", label: "Decacorn Cup", sublabel: "Relationships that compound" },
-  "04": { image: "/sanbo.svg", label: "Sanbo", sublabel: "Intelligence at every layer" },
-};
-
 export function ScrollHowItWorks() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const stepRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
   const [activeStep, setActiveStep] = useState(0);
 
   useEffect(() => {
@@ -48,11 +45,11 @@ export function ScrollHowItWorks() {
       let best = 0;
       let bestDist = Infinity;
 
-      stepRefs.current.forEach((el, i) => {
+      cardRefs.current.forEach((el, i) => {
         if (!el) return;
         const rect = el.getBoundingClientRect();
         const center = rect.top + rect.height / 2;
-        const dist = Math.abs(center - vh * 0.45);
+        const dist = Math.abs(center - vh * 0.5);
         if (dist < bestDist) {
           bestDist = dist;
           best = i;
@@ -67,141 +64,92 @@ export function ScrollHowItWorks() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const vis = stepVisuals[steps[activeStep].num];
-
   return (
-    <section className="py-24 md:py-36 px-8 md:px-16">
-      <div className="max-w-6xl mx-auto">
-        <h2 className="text-xs tracking-[0.3em] text-muted-foreground mb-6 uppercase">
+    <section className="py-24 md:py-36 px-8">
+      <div className="max-w-4xl mx-auto">
+        <h2 className="text-xs tracking-[0.3em] text-muted-foreground mb-4 uppercase">
           HOW IT WORKS
         </h2>
-        <p className="text-2xl md:text-3xl text-foreground/80 font-light font-[family-name:var(--font-display)] max-w-2xl mb-20 leading-relaxed">
-          Capital, code, and culture — layered into a single integrated platform.
+        <p className="text-lg md:text-xl text-foreground/80 font-light max-w-2xl mb-16">
+          Capital, code, and culture — layered into a single integrated platform that connects global influence with venture-scale opportunity.
         </p>
 
-        <div ref={containerRef} className="flex gap-12 md:gap-20 relative">
-          {/* Left: scrolling text steps */}
-          <div className="flex-1 min-w-0">
-            <div className="flex gap-6 md:gap-10">
-              {/* Timeline */}
-              <div className="relative flex-shrink-0" style={{ width: 2 }}>
-                <div className="absolute top-0 bottom-0 w-[2px] bg-[#D1CEC9]" />
-                {steps.map((_, i) => (
-                  <div
-                    key={i}
-                    className="absolute w-3 h-3 rounded-full transition-all duration-500"
-                    style={{
-                      top: `${(i / (steps.length - 1)) * 100}%`,
-                      left: -5,
-                      transform: "translateY(-50%)",
-                      backgroundColor: i <= activeStep ? "#3A4D56" : "transparent",
-                      border: `2px solid ${i <= activeStep ? "#3A4D56" : "#D1CEC9"}`,
-                    }}
-                  />
-                ))}
+        <div className="space-y-8">
+          {steps.map((step, i) => (
+            <div
+              key={step.num}
+              ref={(el) => { cardRefs.current[i] = el; }}
+              className="rounded-2xl bg-[#F5F3EF] border border-[#E8E4DF] p-8 md:p-10 transition-all duration-500"
+              style={{
+                opacity: i === activeStep ? 1 : 0.4,
+                transform: i === activeStep ? "scale(1)" : "scale(0.97)",
+              }}
+            >
+              {/* Header */}
+              <div className="flex items-center gap-4 mb-6">
+                <span className="w-9 h-9 rounded-full bg-foreground text-primary-foreground flex items-center justify-center text-sm font-bold flex-shrink-0">
+                  {step.num}
+                </span>
+                <h3 className="text-sm md:text-base font-semibold tracking-[0.15em] uppercase">
+                  {step.title}
+                </h3>
               </div>
 
-              {/* Steps */}
-              <div className="flex flex-col gap-32 md:gap-44 py-4">
-                {steps.map((step, i) => (
-                  <div
-                    key={step.num}
-                    ref={(el) => { stepRefs.current[i] = el; }}
-                    className="transition-opacity duration-500"
-                    style={{ opacity: i === activeStep ? 1 : 0.25 }}
-                  >
-                    <span className="text-xs tracking-[0.3em] text-muted-foreground uppercase">
-                      {step.num}
-                    </span>
-                    <h3 className="text-xl md:text-2xl font-medium font-[family-name:var(--font-display)] text-foreground mt-2 mb-3">
-                      {step.title}
-                    </h3>
-                    <p className="text-sm md:text-base text-muted-foreground leading-relaxed max-w-md">
-                      {step.desc}
-                    </p>
+              {/* Visual */}
+              <div className="flex justify-center mb-8">
+                {step.images ? (
+                  <div className="flex gap-3">
+                    {step.images.map((src) => (
+                      <Image
+                        key={src}
+                        src={src}
+                        alt=""
+                        width={80}
+                        height={100}
+                        className="rounded-lg object-cover w-20 h-24"
+                      />
+                    ))}
                   </div>
-                ))}
+                ) : step.visual === "interconnected" ? (
+                  <svg width="200" height="120" viewBox="0 0 200 120" fill="none">
+                    <circle cx="100" cy="25" r="10" fill="#3A4D56"/>
+                    <circle cx="45" cy="85" r="10" fill="#3A4D56"/>
+                    <circle cx="155" cy="85" r="10" fill="#3A4D56"/>
+                    <circle cx="70" cy="50" r="7" fill="#7A8D96"/>
+                    <circle cx="130" cy="50" r="7" fill="#7A8D96"/>
+                    <circle cx="100" cy="95" r="7" fill="#7A8D96"/>
+                    <line x1="100" y1="25" x2="45" y2="85" stroke="#D1CEC9" strokeWidth="1.5"/>
+                    <line x1="100" y1="25" x2="155" y2="85" stroke="#D1CEC9" strokeWidth="1.5"/>
+                    <line x1="45" y1="85" x2="155" y2="85" stroke="#D1CEC9" strokeWidth="1.5"/>
+                    <line x1="100" y1="25" x2="70" y2="50" stroke="#D1CEC9" strokeWidth="1"/>
+                    <line x1="100" y1="25" x2="130" y2="50" stroke="#D1CEC9" strokeWidth="1"/>
+                    <line x1="45" y1="85" x2="70" y2="50" stroke="#D1CEC9" strokeWidth="1"/>
+                    <line x1="155" y1="85" x2="130" y2="50" stroke="#D1CEC9" strokeWidth="1"/>
+                    <line x1="45" y1="85" x2="100" y2="95" stroke="#D1CEC9" strokeWidth="1"/>
+                    <line x1="155" y1="85" x2="100" y2="95" stroke="#D1CEC9" strokeWidth="1"/>
+                    <line x1="70" y1="50" x2="130" y2="50" stroke="#D1CEC9" strokeWidth="1"/>
+                  </svg>
+                ) : step.visual === "decacorn" ? (
+                  <div className="bg-[#1a3a2a] rounded-lg px-8 py-6 text-center">
+                    <p className="text-[#c9a84c] font-bold text-lg tracking-wider font-[family-name:var(--font-display)]">
+                      ✦ DECACORN CUP ✦
+                    </p>
+                    <div className="text-4xl mt-2">♞</div>
+                  </div>
+                ) : step.visual === "sanbo" ? (
+                  <Image src="/sanbo.svg" alt="Sanbo" width={100} height={100} />
+                ) : null}
               </div>
-            </div>
-          </div>
 
-          {/* Right: sticky visual */}
-          <div className="hidden md:block w-[380px] flex-shrink-0">
-            <div className="sticky top-[30vh]">
-              <div
-                className="rounded-2xl bg-[#EEEAE3] border border-[#D1CEC9] overflow-hidden transition-all duration-700"
-                style={{ minHeight: 360 }}
-              >
-                <div className="p-8 flex flex-col items-center justify-center gap-6" style={{ minHeight: 360 }}>
-                  {steps[activeStep].images.length > 0 ? (
-                    <>
-                      <div className="flex gap-4 justify-center">
-                        {steps[activeStep].images.map((src, j) => (
-                          <Image
-                            key={src}
-                            src={src}
-                            alt=""
-                            width={96}
-                            height={120}
-                            className="rounded-xl object-cover w-24 h-28 transition-all duration-500"
-                            style={{ transform: `translateY(${j * 4}px)` }}
-                          />
-                        ))}
-                      </div>
-                      <p className="text-sm text-muted-foreground tracking-widest uppercase text-center">
-                        {vis.sublabel}
-                      </p>
-                    </>
-                  ) : vis.image ? (
-                    <>
-                      <Image src={vis.image} alt={vis.label} width={120} height={120} className="transition-all duration-500" />
-                      <div className="text-center">
-                        <p className="text-lg font-medium font-[family-name:var(--font-display)] text-foreground">{vis.label}</p>
-                        <p className="text-sm text-muted-foreground mt-1">{vis.sublabel}</p>
-                      </div>
-                    </>
-                  ) : vis.svg === "interconnected" ? (
-                    <>
-                      <svg width="120" height="120" viewBox="0 0 120 120" fill="none" className="transition-all duration-500">
-                        <circle cx="60" cy="30" r="8" fill="#3A4D56"/>
-                        <circle cx="30" cy="80" r="8" fill="#3A4D56"/>
-                        <circle cx="90" cy="80" r="8" fill="#3A4D56"/>
-                        <circle cx="60" cy="90" r="6" fill="#5A6D76"/>
-                        <circle cx="38" cy="50" r="6" fill="#5A6D76"/>
-                        <circle cx="82" cy="50" r="6" fill="#5A6D76"/>
-                        <line x1="60" y1="30" x2="30" y2="80" stroke="#D1CEC9" strokeWidth="1.5"/>
-                        <line x1="60" y1="30" x2="90" y2="80" stroke="#D1CEC9" strokeWidth="1.5"/>
-                        <line x1="30" y1="80" x2="90" y2="80" stroke="#D1CEC9" strokeWidth="1.5"/>
-                        <line x1="60" y1="30" x2="38" y2="50" stroke="#D1CEC9" strokeWidth="1"/>
-                        <line x1="60" y1="30" x2="82" y2="50" stroke="#D1CEC9" strokeWidth="1"/>
-                        <line x1="30" y1="80" x2="60" y2="90" stroke="#D1CEC9" strokeWidth="1"/>
-                        <line x1="90" y1="80" x2="60" y2="90" stroke="#D1CEC9" strokeWidth="1"/>
-                        <line x1="38" y1="50" x2="30" y2="80" stroke="#D1CEC9" strokeWidth="1"/>
-                        <line x1="82" y1="50" x2="90" y2="80" stroke="#D1CEC9" strokeWidth="1"/>
-                      </svg>
-                      <div className="text-center">
-                        <p className="text-lg font-medium font-[family-name:var(--font-display)] text-foreground">{vis.label}</p>
-                        <p className="text-sm text-muted-foreground mt-1">{vis.sublabel}</p>
-                      </div>
-                    </>
-                  ) : vis.svg === "decacorn" ? (
-                    <>
-                      <svg width="120" height="120" viewBox="0 0 120 120" fill="none" className="transition-all duration-500">
-                        <circle cx="60" cy="60" r="40" stroke="#3A4D56" strokeWidth="2" fill="none"/>
-                        <circle cx="60" cy="60" r="28" stroke="#5A6D76" strokeWidth="1.5" fill="none"/>
-                        <path d="M60 20 L63 55 L60 60 L57 55 Z" fill="#3A4D56"/>
-                        <text x="60" y="67" textAnchor="middle" fontSize="11" fontWeight="600" fill="#3A4D56" fontFamily="serif">DC</text>
-                        <text x="60" y="108" textAnchor="middle" fontSize="8" letterSpacing="3" fill="#5A6D76" fontFamily="sans-serif">DECACORN CUP</text>
-                      </svg>
-                      <div className="text-center">
-                        <p className="text-lg font-medium font-[family-name:var(--font-display)] text-foreground">{vis.label}</p>
-                        <p className="text-sm text-muted-foreground mt-1">{vis.sublabel}</p>
-                      </div>
-                    </>
-                  ) : null}
-              </div>
+              {/* Text */}
+              <h4 className="text-base md:text-lg font-semibold text-foreground mb-2">
+                {step.subtitle}
+              </h4>
+              <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
+                {step.desc}
+              </p>
             </div>
-          </div>
+          ))}
         </div>
       </div>
     </section>
