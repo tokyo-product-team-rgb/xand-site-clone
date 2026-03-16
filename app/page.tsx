@@ -20,33 +20,28 @@ export default function Home() {
         </p>
       </section>
 
-      {/* Facts */}
-      <section className="relative py-32 md:py-48">
-        <div className="max-w-3xl mx-auto px-8">
-          {/* Decorative vertical line */}
-          <div className="absolute left-1/2 top-16 w-px h-32 bg-border" />
-          {/* Decorative circle */}
-          <div className="absolute left-8 top-1/2 -translate-y-1/2 w-48 h-48 rounded-full border border-border hidden md:block" />
-
-          <div className="space-y-12 text-center">
+      {/* Facts Banner */}
+      <section className="relative">
+        <div className="w-full bg-[#EEEAE3] py-28 md:py-40 px-8">
+          <div className="max-w-3xl mx-auto text-center space-y-6">
             <ScrollReveal delay={0}>
-              <p className="text-xl md:text-2xl text-foreground/80 font-light">
+              <p className="text-xl md:text-2xl font-light font-[family-name:var(--font-display)]" style={{ color: "#3a3a36" }}>
                 Capital is changing.
               </p>
             </ScrollReveal>
             <ScrollReveal delay={200}>
-              <p className="text-xl md:text-2xl text-foreground font-semibold">
+              <p className="text-xl md:text-2xl font-light font-[family-name:var(--font-display)]" style={{ color: "#3a3a36" }}>
                 Code is accelerating.
               </p>
             </ScrollReveal>
             <ScrollReveal delay={400}>
-              <p className="text-xl md:text-2xl text-foreground/80 font-light">
+              <p className="text-xl md:text-2xl font-light font-[family-name:var(--font-display)]" style={{ color: "#3a3a36" }}>
                 Culture is becoming distribution.
               </p>
             </ScrollReveal>
             <ScrollReveal delay={700}>
-              <p className="text-2xl md:text-3xl text-foreground font-bold mt-16">
-                X& is where they come together.
+              <p className="text-2xl md:text-3xl font-medium mt-8 font-[family-name:var(--font-display)]" style={{ color: "#2a2a26" }}>
+                X& is coming together.
               </p>
             </ScrollReveal>
           </div>
