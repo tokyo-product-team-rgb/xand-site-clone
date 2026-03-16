@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ScrollReveal, ScrollTimeline } from "@/components/scroll-reveal";
+import { ScrollTimeline } from "@/components/scroll-reveal";
+import { ScrollHowItWorks } from "@/components/scroll-how-it-works";
 
 export default function Home() {
   return (
@@ -32,88 +33,7 @@ export default function Home() {
       />
 
       {/* How It Works */}
-      <section className="py-24 md:py-36 px-8 md:px-16">
-        <div className="max-w-5xl mx-auto">
-          <ScrollReveal>
-            <h2 className="text-xs tracking-[0.3em] text-muted-foreground mb-6 uppercase">
-              HOW IT WORKS
-            </h2>
-            <p className="text-2xl md:text-3xl text-foreground/80 font-light font-[family-name:var(--font-display)] max-w-2xl mb-20 leading-relaxed">
-              Capital, code, and culture — layered into a single integrated platform.
-            </p>
-          </ScrollReveal>
-
-          <div className="flex gap-8 md:gap-14">
-            {/* Timeline */}
-            <div className="relative flex-shrink-0" style={{ width: 2 }}>
-              <div className="absolute top-0 bottom-0 w-[2px] bg-[#D1CEC9]" />
-              {[0, 1, 2, 3].map((i) => (
-                <div
-                  key={i}
-                  className="absolute w-2.5 h-2.5 rounded-full bg-[#3A4D56] border-2 border-[#3A4D56]"
-                  style={{ top: `${i * 33}%`, left: -4, transform: "translateY(-50%)" }}
-                />
-              ))}
-            </div>
-
-            {/* Steps */}
-            <div className="flex flex-col gap-20 md:gap-28">
-              <ScrollReveal delay={0}>
-                <div className="space-y-4">
-                  <span className="text-xs tracking-[0.3em] text-muted-foreground uppercase">01</span>
-                  <h3 className="text-xl md:text-2xl font-medium font-[family-name:var(--font-display)] text-foreground">
-                    Global Celebrities
-                  </h3>
-                  <p className="text-sm md:text-base text-muted-foreground leading-relaxed max-w-lg">
-                    World-class celebrities partner with X& to deploy capital, build brands, and create value through direct engagement with the startup ecosystem.
-                  </p>
-                  <div className="flex gap-3 pt-2">
-                    <Image src="/kevin.png" alt="Kevin Hart" width={64} height={80} className="rounded-lg object-cover w-16 h-20" />
-                    <Image src="/steve.png" alt="Steve Aoki" width={64} height={80} className="rounded-lg object-cover w-16 h-20" />
-                    <Image src="/man.png" alt="Partner" width={64} height={80} className="rounded-lg object-cover w-16 h-20" />
-                  </div>
-                </div>
-              </ScrollReveal>
-
-              <ScrollReveal delay={100}>
-                <div className="space-y-4">
-                  <span className="text-xs tracking-[0.3em] text-muted-foreground uppercase">02</span>
-                  <h3 className="text-xl md:text-2xl font-medium font-[family-name:var(--font-display)] text-foreground">
-                    Online Influence
-                  </h3>
-                  <p className="text-sm md:text-base text-muted-foreground leading-relaxed max-w-lg">
-                    Amplifying deal flow and brand reach through digital-native networks that connect culture to capital at scale.
-                  </p>
-                </div>
-              </ScrollReveal>
-
-              <ScrollReveal delay={100}>
-                <div className="space-y-4">
-                  <span className="text-xs tracking-[0.3em] text-muted-foreground uppercase">03</span>
-                  <h3 className="text-xl md:text-2xl font-medium font-[family-name:var(--font-display)] text-foreground">
-                    Offline Influence
-                  </h3>
-                  <p className="text-sm md:text-base text-muted-foreground leading-relaxed max-w-lg">
-                    High-touch relationships and curated events that turn cultural capital into lasting venture partnerships.
-                  </p>
-                </div>
-              </ScrollReveal>
-
-              <ScrollReveal delay={100}>
-                <div className="space-y-4">
-                  <span className="text-xs tracking-[0.3em] text-muted-foreground uppercase">04</span>
-                  <h3 className="text-xl md:text-2xl font-medium font-[family-name:var(--font-display)] text-foreground">
-                    AI-Native Intelligence OS
-                  </h3>
-                  <p className="text-sm md:text-base text-muted-foreground leading-relaxed max-w-lg">
-                    Proprietary AI infrastructure powering every layer — from deal sourcing and diligence to portfolio management and LP reporting.
-                  </p>
-                </div>
-              </ScrollReveal>
-            </div>
-          </div>
-        </div>
-      </section>
+      <ScrollHowItWorks />
 
       {/* THIS IS X& Banner */}
       <section className="py-24 text-center" style={{
