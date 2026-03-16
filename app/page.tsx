@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <main>
       {/* Hero */}
-      <section className="min-h-screen flex flex-col items-center justify-center border-t border-b border-border relative">
+      <section className="min-h-[70vh] flex flex-col items-center justify-center border-t border-b border-border relative">
         <Image
           src="/hero-logo.png"
           alt="X&"
@@ -22,7 +22,7 @@ export default function Home() {
 
       {/* Facts Banner */}
       <section className="relative">
-        <div className="w-full bg-[#EEEAE3] py-28 md:py-40 px-8">
+        <div className="w-full bg-[#EEEAE3] py-16 md:py-24 px-8">
           <div className="max-w-3xl mx-auto text-center space-y-6">
             <ScrollReveal delay={0}>
               <p className="text-xl md:text-2xl font-light font-[family-name:var(--font-display)]" style={{ color: "#3a3a36" }}>
