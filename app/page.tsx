@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ScrollReveal } from "@/components/scroll-reveal";
+import { ScrollReveal, ScrollTimeline } from "@/components/scroll-reveal";
 
 export default function Home() {
   return (
@@ -21,32 +21,15 @@ export default function Home() {
       </section>
 
       {/* Facts Banner */}
-      <section className="relative">
-        <div className="w-full bg-[#EEEAE3] py-16 md:py-24 px-8">
-          <div className="max-w-3xl mx-auto text-center space-y-6">
-            <ScrollReveal delay={0}>
-              <p className="text-xl md:text-2xl font-light font-[family-name:var(--font-display)]" style={{ color: "#3a3a36" }}>
-                Capital is changing.
-              </p>
-            </ScrollReveal>
-            <ScrollReveal delay={200}>
-              <p className="text-xl md:text-2xl font-light font-[family-name:var(--font-display)]" style={{ color: "#3a3a36" }}>
-                Code is accelerating.
-              </p>
-            </ScrollReveal>
-            <ScrollReveal delay={400}>
-              <p className="text-xl md:text-2xl font-light font-[family-name:var(--font-display)]" style={{ color: "#3a3a36" }}>
-                Culture is becoming distribution.
-              </p>
-            </ScrollReveal>
-            <ScrollReveal delay={700}>
-              <p className="text-2xl md:text-3xl font-medium mt-8 font-[family-name:var(--font-display)]" style={{ color: "#2a2a26" }}>
-                X& is coming together.
-              </p>
-            </ScrollReveal>
-          </div>
-        </div>
-      </section>
+      <ScrollTimeline
+        highlight="X& is coming together."
+        items={[
+          { text: "Capital is changing." },
+          { text: "Code is accelerating." },
+          { text: "Culture is becoming distribution." },
+          { text: "X& is coming together.", bold: true },
+        ]}
+      />
 
       {/* How It Works */}
       <section className="py-24 md:py-32 px-8">
