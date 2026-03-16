@@ -30,12 +30,11 @@ const steps = [
   },
 ];
 
-// Placeholder visuals for steps without images
-const stepVisuals: Record<string, { icon: string; label: string; sublabel: string }> = {
-  "01": { icon: "🌟", label: "Celebrity Network", sublabel: "Global reach, cultural capital" },
-  "02": { icon: "📡", label: "Digital Distribution", sublabel: "Social reach × deal flow" },
-  "03": { icon: "🤝", label: "Curated Events", sublabel: "Relationships that compound" },
-  "04": { icon: "🧠", label: "AI Infrastructure", sublabel: "Intelligence at every layer" },
+const stepVisuals: Record<string, { image?: string; svg?: string; label: string; sublabel: string }> = {
+  "01": { label: "Celebrity Network", sublabel: "Global reach, cultural capital" },
+  "02": { svg: "interconnected", label: "Digital Distribution", sublabel: "Social reach × deal flow" },
+  "03": { svg: "decacorn", label: "Decacorn Cup", sublabel: "Relationships that compound" },
+  "04": { image: "/sanbo.svg", label: "Sanbo", sublabel: "Intelligence at every layer" },
 };
 
 export function ScrollHowItWorks() {
@@ -133,39 +132,73 @@ export function ScrollHowItWorks() {
                 className="rounded-2xl bg-[#EEEAE3] border border-[#D1CEC9] overflow-hidden transition-all duration-700"
                 style={{ minHeight: 360 }}
               >
-                {steps[activeStep].images.length > 0 ? (
-                  <div className="p-8 flex flex-col items-center gap-6">
-                    <div className="flex gap-4 justify-center">
-                      {steps[activeStep].images.map((src, j) => (
-                        <Image
-                          key={src}
-                          src={src}
-                          alt=""
-                          width={96}
-                          height={120}
-                          className="rounded-xl object-cover w-24 h-28 transition-all duration-500"
-                          style={{
-                            opacity: 1,
-                            transform: `translateY(${j * 4}px)`,
-                          }}
-                        />
-                      ))}
-                    </div>
-                    <p className="text-sm text-muted-foreground tracking-widest uppercase text-center">
-                      {vis.sublabel}
-                    </p>
-                  </div>
-                ) : (
-                  <div className="p-8 flex flex-col items-center justify-center gap-6" style={{ minHeight: 360 }}>
-                    <span className="text-6xl transition-all duration-500">{vis.icon}</span>
-                    <div className="text-center">
-                      <p className="text-lg font-medium font-[family-name:var(--font-display)] text-foreground">
-                        {vis.label}
+                <div className="p-8 flex flex-col items-center justify-center gap-6" style={{ minHeight: 360 }}>
+                  {steps[activeStep].images.length > 0 ? (
+                    <>
+                      <div className="flex gap-4 justify-center">
+                        {steps[activeStep].images.map((src, j) => (
+                          <Image
+                            key={src}
+                            src={src}
+                            alt=""
+                            width={96}
+                            height={120}
+                            className="rounded-xl object-cover w-24 h-28 transition-all duration-500"
+                            style={{ transform: `translateY(${j * 4}px)` }}
+                          />
+                        ))}
+                      </div>
+                      <p className="text-sm text-muted-foreground tracking-widest uppercase text-center">
+                        {vis.sublabel}
                       </p>
-                      <p className="text-sm text-muted-foreground mt-1">{vis.sublabel}</p>
-                    </div>
-                  </div>
-                )}
+                    </>
+                  ) : vis.image ? (
+                    <>
+                      <Image src={vis.image} alt={vis.label} width={120} height={120} className="transition-all duration-500" />
+                      <div className="text-center">
+                        <p className="text-lg font-medium font-[family-name:var(--font-display)] text-foreground">{vis.label}</p>
+                        <p className="text-sm text-muted-foreground mt-1">{vis.sublabel}</p>
+                      </div>
+                    </>
+                  ) : vis.svg === "interconnected" ? (
+                    <>
+                      <svg width="120" height="120" viewBox="0 0 120 120" fill="none" className="transition-all duration-500">
+                        <circle cx="60" cy="30" r="8" fill="#3A4D56"/>
+                        <circle cx="30" cy="80" r="8" fill="#3A4D56"/>
+                        <circle cx="90" cy="80" r="8" fill="#3A4D56"/>
+                        <circle cx="60" cy="90" r="6" fill="#5A6D76"/>
+                        <circle cx="38" cy="50" r="6" fill="#5A6D76"/>
+                        <circle cx="82" cy="50" r="6" fill="#5A6D76"/>
+                        <line x1="60" y1="30" x2="30" y2="80" stroke="#D1CEC9" strokeWidth="1.5"/>
+                        <line x1="60" y1="30" x2="90" y2="80" stroke="#D1CEC9" strokeWidth="1.5"/>
+                        <line x1="30" y1="80" x2="90" y2="80" stroke="#D1CEC9" strokeWidth="1.5"/>
+                        <line x1="60" y1="30" x2="38" y2="50" stroke="#D1CEC9" strokeWidth="1"/>
+                        <line x1="60" y1="30" x2="82" y2="50" stroke="#D1CEC9" strokeWidth="1"/>
+                        <line x1="30" y1="80" x2="60" y2="90" stroke="#D1CEC9" strokeWidth="1"/>
+                        <line x1="90" y1="80" x2="60" y2="90" stroke="#D1CEC9" strokeWidth="1"/>
+                        <line x1="38" y1="50" x2="30" y2="80" stroke="#D1CEC9" strokeWidth="1"/>
+                        <line x1="82" y1="50" x2="90" y2="80" stroke="#D1CEC9" strokeWidth="1"/>
+                      </svg>
+                      <div className="text-center">
+                        <p className="text-lg font-medium font-[family-name:var(--font-display)] text-foreground">{vis.label}</p>
+                        <p className="text-sm text-muted-foreground mt-1">{vis.sublabel}</p>
+                      </div>
+                    </>
+                  ) : vis.svg === "decacorn" ? (
+                    <>
+                      <svg width="120" height="120" viewBox="0 0 120 120" fill="none" className="transition-all duration-500">
+                        <circle cx="60" cy="60" r="40" stroke="#3A4D56" strokeWidth="2" fill="none"/>
+                        <circle cx="60" cy="60" r="28" stroke="#5A6D76" strokeWidth="1.5" fill="none"/>
+                        <path d="M60 20 L63 55 L60 60 L57 55 Z" fill="#3A4D56"/>
+                        <text x="60" y="67" textAnchor="middle" fontSize="11" fontWeight="600" fill="#3A4D56" fontFamily="serif">DC</text>
+                        <text x="60" y="108" textAnchor="middle" fontSize="8" letterSpacing="3" fill="#5A6D76" fontFamily="sans-serif">DECACORN CUP</text>
+                      </svg>
+                      <div className="text-center">
+                        <p className="text-lg font-medium font-[family-name:var(--font-display)] text-foreground">{vis.label}</p>
+                        <p className="text-sm text-muted-foreground mt-1">{vis.sublabel}</p>
+                      </div>
+                    </>
+                  ) : null}
               </div>
             </div>
           </div>
