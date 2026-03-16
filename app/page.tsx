@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { ScrollReveal } from "@/components/scroll-reveal";
 
 export default function Home() {
   return (
@@ -28,18 +29,26 @@ export default function Home() {
           <div className="absolute left-8 top-1/2 -translate-y-1/2 w-48 h-48 rounded-full border border-border hidden md:block" />
 
           <div className="space-y-12 text-center">
-            <p className="text-xl md:text-2xl text-foreground/80 font-light">
-              Capital is changing.
-            </p>
-            <p className="text-xl md:text-2xl text-foreground font-semibold">
-              Code is accelerating.
-            </p>
-            <p className="text-xl md:text-2xl text-foreground/80 font-light">
-              Culture is becoming distribution.
-            </p>
-            <p className="text-2xl md:text-3xl text-foreground font-bold mt-16">
-              X& is where they come together.
-            </p>
+            <ScrollReveal delay={0}>
+              <p className="text-xl md:text-2xl text-foreground/80 font-light">
+                Capital is changing.
+              </p>
+            </ScrollReveal>
+            <ScrollReveal delay={200}>
+              <p className="text-xl md:text-2xl text-foreground font-semibold">
+                Code is accelerating.
+              </p>
+            </ScrollReveal>
+            <ScrollReveal delay={400}>
+              <p className="text-xl md:text-2xl text-foreground/80 font-light">
+                Culture is becoming distribution.
+              </p>
+            </ScrollReveal>
+            <ScrollReveal delay={700}>
+              <p className="text-2xl md:text-3xl text-foreground font-bold mt-16">
+                X& is where they come together.
+              </p>
+            </ScrollReveal>
           </div>
         </div>
       </section>
