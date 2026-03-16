@@ -5,37 +5,36 @@ import Image from "next/image";
 
 const steps = [
   {
-    num: 1,
     title: "GLOBAL CELEBRITIES",
-    subtitle: "Celebrity-Led Investment Platform",
-    desc: "World-class celebrities partner with X& to deploy capital, build brands, and create value through direct engagement with the startup ecosystem.",
-    images: ["/kevin.png", "/steve.png", "/man.png"],
+    subtitle: "INVESTMENTS",
+    assets: ["/kevin.png", "/steve.png", "/man.png"],
+    content:
+      "X& partners with global icons who bring unique access to high-potential sectors, serving as their exclusive venture capital partner.\n\nOur mission is to build a platform where the most influential minds from government, business, culture, and technology can leverage to amplify their message.",
   },
   {
-    num: 2,
     title: "ONLINE INFLUENCE",
-    subtitle: "Digital-native distribution",
-    desc: "Amplifying deal flow and brand reach through digital-native networks that connect culture to capital at scale.",
-    visual: "interconnected",
+    subtitle: "Digital distribution with intent",
+    assets: ["/insta.png", "/linkedin.png"],
+    content:
+      "Our online influence is a global distribution network powered by cultural icons and our brand that allows us to shape conversations and accelerate the adoption of technology, products, and ideas.",
   },
   {
-    num: 3,
     title: "OFFLINE INFLUENCE",
     subtitle: "Real-world credibility and access",
-    desc: "From Decacorn Cup to Founder Performance Centers, we bring unique people together.",
-    visual: "decacorn",
+    assets: ["/horse.png"],
+    content:
+      "From Decacorn Cup to Founder Performance Centers, we bring unique people together.",
   },
   {
-    num: 4,
     title: "AI NATIVE INTELLIGENCE OS",
-    subtitle: "Sanbo — Intelligence at every layer",
-    desc: "Proprietary AI infrastructure powering every layer — from deal sourcing and diligence to portfolio management and LP reporting.",
-    visual: "sanbo",
+    subtitle: "Investment Management",
+    assets: ["/sanbo.svg"],
+    content:
+      "AI-native OS for Investors that unifies data, governance, and agent execution in one secure environment.",
   },
 ];
 
 export function ScrollHowItWorks() {
-  const containerRef = useRef<HTMLDivElement>(null);
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
   const [activeStep, setActiveStep] = useState(0);
 
@@ -65,88 +64,59 @@ export function ScrollHowItWorks() {
   }, []);
 
   return (
-    <section className="py-24 md:py-36 px-8">
-      <div className="max-w-4xl mx-auto">
+    <section className="py-24 md:py-32 px-8">
+      <div className="max-w-6xl mx-auto">
         <h2 className="text-xs tracking-[0.3em] text-muted-foreground mb-4 uppercase">
           HOW IT WORKS
         </h2>
         <p className="text-lg md:text-xl text-foreground/80 font-light max-w-2xl mb-16">
-          Capital, code, and culture — layered into a single integrated platform that connects global influence with venture-scale opportunity.
+          X& builds and operates platforms at the intersection of capital, code, and culture.
         </p>
 
         <div className="space-y-8">
           {steps.map((step, i) => (
             <div
-              key={step.num}
-              ref={(el) => { cardRefs.current[i] = el; }}
-              className="rounded-2xl bg-[#F5F3EF] border border-[#E8E4DF] p-8 md:p-10 transition-all duration-500"
+              key={step.title}
+              ref={(el) => {
+                cardRefs.current[i] = el;
+              }}
+              className="border border-gray-200 shadow-[0_20px_40px_rgba(0,0,0,0.08)] rounded-2xl p-8 md:p-10 transition-all duration-500 space-y-6"
               style={{
-                opacity: i === activeStep ? 1 : 0.4,
-                transform: i === activeStep ? "scale(1)" : "scale(0.97)",
+                opacity: i === activeStep ? 1 : 0.35,
+                transform: i === activeStep ? "scale(1)" : "scale(0.98)",
               }}
             >
               {/* Header */}
-              <div className="flex items-center gap-4 mb-6">
-                <span className="w-9 h-9 rounded-full bg-foreground text-primary-foreground flex items-center justify-center text-sm font-bold flex-shrink-0">
-                  {step.num}
-                </span>
-                <h3 className="text-sm md:text-base font-semibold tracking-[0.15em] uppercase">
+              <div className="flex items-center gap-4">
+                <div className="w-7 h-7 rounded-full bg-[#3A4D56] text-white flex items-center justify-center text-sm font-medium">
+                  {i + 1}
+                </div>
+                <h3 className="text-sm md:text-xl tracking-wider font-medium text-[#3A4D56]">
                   {step.title}
                 </h3>
               </div>
 
-              {/* Visual */}
-              <div className="flex justify-center mb-8">
-                {step.images ? (
-                  <div className="flex gap-3">
-                    {step.images.map((src) => (
-                      <Image
-                        key={src}
-                        src={src}
-                        alt=""
-                        width={80}
-                        height={100}
-                        className="rounded-lg object-cover w-20 h-24"
-                      />
-                    ))}
+              {/* Assets */}
+              <div className="flex gap-2">
+                {step.assets.map((src) => (
+                  <div key={src} className="relative aspect-square w-full max-h-35">
+                    <Image
+                      src={src}
+                      alt=""
+                      fill
+                      sizes="30vw"
+                      className="object-contain object-top"
+                    />
                   </div>
-                ) : step.visual === "interconnected" ? (
-                  <svg width="200" height="120" viewBox="0 0 200 120" fill="none">
-                    <circle cx="100" cy="25" r="10" fill="#3A4D56"/>
-                    <circle cx="45" cy="85" r="10" fill="#3A4D56"/>
-                    <circle cx="155" cy="85" r="10" fill="#3A4D56"/>
-                    <circle cx="70" cy="50" r="7" fill="#7A8D96"/>
-                    <circle cx="130" cy="50" r="7" fill="#7A8D96"/>
-                    <circle cx="100" cy="95" r="7" fill="#7A8D96"/>
-                    <line x1="100" y1="25" x2="45" y2="85" stroke="#D1CEC9" strokeWidth="1.5"/>
-                    <line x1="100" y1="25" x2="155" y2="85" stroke="#D1CEC9" strokeWidth="1.5"/>
-                    <line x1="45" y1="85" x2="155" y2="85" stroke="#D1CEC9" strokeWidth="1.5"/>
-                    <line x1="100" y1="25" x2="70" y2="50" stroke="#D1CEC9" strokeWidth="1"/>
-                    <line x1="100" y1="25" x2="130" y2="50" stroke="#D1CEC9" strokeWidth="1"/>
-                    <line x1="45" y1="85" x2="70" y2="50" stroke="#D1CEC9" strokeWidth="1"/>
-                    <line x1="155" y1="85" x2="130" y2="50" stroke="#D1CEC9" strokeWidth="1"/>
-                    <line x1="45" y1="85" x2="100" y2="95" stroke="#D1CEC9" strokeWidth="1"/>
-                    <line x1="155" y1="85" x2="100" y2="95" stroke="#D1CEC9" strokeWidth="1"/>
-                    <line x1="70" y1="50" x2="130" y2="50" stroke="#D1CEC9" strokeWidth="1"/>
-                  </svg>
-                ) : step.visual === "decacorn" ? (
-                  <div className="bg-[#1a3a2a] rounded-lg px-8 py-6 text-center">
-                    <p className="text-[#c9a84c] font-bold text-lg tracking-wider font-[family-name:var(--font-display)]">
-                      ✦ DECACORN CUP ✦
-                    </p>
-                    <div className="text-4xl mt-2">♞</div>
-                  </div>
-                ) : step.visual === "sanbo" ? (
-                  <Image src="/sanbo.svg" alt="Sanbo" width={100} height={100} />
-                ) : null}
+                ))}
               </div>
 
               {/* Text */}
-              <h4 className="text-base md:text-lg font-semibold text-foreground mb-2">
+              <h4 className="text-lg font-semibold text-[#2F3E46] whitespace-pre-wrap">
                 {step.subtitle}
               </h4>
-              <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
-                {step.desc}
+              <p className="text-[#4F5D64] leading-relaxed max-w-3xl whitespace-pre-wrap text-sm md:text-base">
+                {step.content}
               </p>
             </div>
           ))}
